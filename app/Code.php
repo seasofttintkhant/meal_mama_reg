@@ -26,16 +26,23 @@ class Code extends Model
 
   public static function generateRandomUniqueNumber($min=0, $max=1000) {
         $code = rand($min,$max);
+        $check_code = true;
 
-        $code_exist = self::checkUniqueCode();
-        if($code_exist){
-            $code = rand($min,$max);
+        while($check_code){
+            $code_exist = self::checkUniqueCode();
+            if($code_exist){
+                $code = rand($min,$max);
+                $check_code = true;
+            }else{
+                $check_code = false;
+            }
         }
-        return $randomString;
+
+        return $code;
     }
 
     public static function checkUniqueCode(){
-        $code_exist self::where("unique_code",$number)->first();
+        $code_exist = self::where("unique_code",$number)->first();
         if(isset($code_exist) && !empty($code_exist)){
             return true;
         }
