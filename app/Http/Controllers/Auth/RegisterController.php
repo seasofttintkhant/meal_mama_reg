@@ -102,7 +102,6 @@ class RegisterController extends BaseController
      */
     public function saveEmail(Request $request)
     {
-
         //Validation
 
         $this->validate($request,[
@@ -112,41 +111,34 @@ class RegisterController extends BaseController
         ],$this->messages);
         
         //Generate Code 
-        $str_code = Code::generateRandomCode(8);
         $first_name = strip_tags(trim($request->first_name));
         $last_name = strip_tags(trim($request->last_name));
         $email = strip_tags(trim($request->email));
-
-        //Perpare data
-        $data =[
-            "email" =>$email,
-            "code" => hash('md5',$str_code),
-        ];
+        $unique_code = Code::generateRandomUniqueNumber();
 
         //Store Data
          $code = Code::firstOrCreate(["email" => $email],[
-            "code" => hash("md5",$str_code),
+            "unique_code" => $unique_code,
             "first_name" => $first_name,
             "last_name" => $last_name,
             "email" => $email
          ]);
 
          $code->update([
-            "code" => hash("md5",$str_code),
             "first_name" => $first_name,
             "last_name" => $last_name
          ]);
 
          //Email to user 
-         Code::kinder_registration_confirm($email,$str_code);
+         Code::kinder_registration_confirm($email,$code->unique_code);
 
          return view("register.code_sent", compact('first_name','last_name','email'));
 
     }
 
-    public function showRegisterForm(Request $request,$code){
-        $code = strip_tags(trim($code));
-        $codeData = Code::where('code',hash('md5',$code))->first();
+    public function showRegisterForm(Request $request,$unique_code){
+        $unique_code = strip_tags(trim($unique_code));
+        $codeData = Code::where('unique_code',$unique_code)->first();
         if(isset($codeData) && !empty($codeData)){
             if($codeData->updated_at->timestamp + (72 * 60 *60) < time())
             {
@@ -161,7 +153,7 @@ class RegisterController extends BaseController
 
             return view('register.register_form',[
                 "email" => $codeData->email,
-                "code" => $code ,
+                "unique_code" => $unique_code ,
                 "first_name" => $codeData->first_name ,
                 "last_name" => $codeData->last_name ,
                 "tempuserData" => $tempuserData 
@@ -173,7 +165,7 @@ class RegisterController extends BaseController
 
     public function confirmRegisterForm(Request $request,KinderRequest $tempuser){
    
-        $codeData= Code::where('code',hash('md5',$request->code))->firstOrFail();
+        $codeData= Code::where('unique_code',$request->unique_code)->firstOrFail();
 
         $this->rules['email'] ='required|email|unique:mealmm_user_request';
         $this->rules['password'] =['required','different:email',new Password];
@@ -198,7 +190,7 @@ class RegisterController extends BaseController
             'email' =>  isset($request->email) && !empty($request->email) ? strip_tags(trim($request->email)) : null,
             'password'=> isset($request->password) && !empty($request->password) ? bcrypt(strip_tags(trim($request->password))) : null,
             "contact_name" => isset($request->contact_name) && !empty($request->contact_name) ? strip_tags(trim($request->contact_name)) : null,
-            'code' => $request->code
+            'unique_code' => $request->unique_code
         ];
 
         Session::put("tempuserData",$tempuserData);
@@ -212,14 +204,14 @@ class RegisterController extends BaseController
 
         if(Session::get("tempuserData")){
             $tempuserData = Session::get("tempuserData");
-            $code = $tempuserData["code"];
-            unset($tempuserData["code"]);
+            $unique_code = $tempuserData["unique_code"];
+            unset($tempuserData["unique_code"]);
             Session::forget("tempuserData");
         }else{
             abort(404);
         }
 
-        $codeData= Code::where('code',hash('md5',$code))->firstOrFail();
+        $codeData= Code::where('unique_code',$unique_code)->firstOrFail();
 
         $temp_user = new KinderRequest;
         $temp_user->fill($tempuserData);

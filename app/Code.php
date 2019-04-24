@@ -25,13 +25,13 @@ class Code extends Model
     }
 
   public static function generateRandomUniqueNumber($min=0, $max=1000) {
-        $code = rand($min,$max);
+        $code = 0;
         $check_code = true;
-
         while($check_code){
-            $code_exist = self::checkUniqueCode();
+            $code = rand($min,$max);
+            $code = str_pad($code, 4, '0', STR_PAD_LEFT);
+            $code_exist = self::checkUniqueCode($code);
             if($code_exist){
-                $code = rand($min,$max);
                 $check_code = true;
             }else{
                 $check_code = false;
@@ -41,8 +41,8 @@ class Code extends Model
         return $code;
     }
 
-    public static function checkUniqueCode(){
-        $code_exist = self::where("unique_code",$number)->first();
+    public static function checkUniqueCode($code){
+        $code_exist = self::where("unique_code",$code)->first();
         if(isset($code_exist) && !empty($code_exist)){
             return true;
         }

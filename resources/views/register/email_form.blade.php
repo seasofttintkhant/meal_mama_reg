@@ -41,24 +41,29 @@
     </div>
     <div class="col-lg-5">
     {{Form::open(['route'=>'register.save_email','method'=>'POST'])}}
-        <div class="input-group">
-
+        <div class="input-form">
             {{Form::text('last_name',null,['class'=>'form-control','placeholder' => 'Last Name'])}}
             @if ($errors->has('last_name'))
                 <span class="d-block color-red wd100-err-txt">{{ $errors->first('last_name') }}</span>
             @endif
+        </div>
+        <br>
+        <div class="input-form">
             {{Form::text('first_name',null,['class'=>'form-control','placeholder' => 'First Name'])}}
             @if ($errors->has('first_name'))
                 <span class="d-block color-red wd100-err-txt">{{ $errors->first('first_name') }}</span>
             @endif
+        </div>
+        <br>
+        <div class="input-form">
             {{Form::email('email',null,['class'=>'form-control','placeholder' => '例) kinder@kids‒meal.com'])}}
-            <div class="input-group-append">
-                <button class="btn btn-warning text-white px-3" type="submit">送信</button>
-            </div>
-            <br/>
             @if ($errors->has('email'))
                 <span class="d-block color-red wd100-err-txt">{{ $errors->first('email') }}</span>
             @endif
+        </div>
+        <br>
+        <div class="input-form">
+            <button class="btn btn-warning text-white px-3" type="submit">送信</button>
         </div>
     {{Form::close()}}
     </div>

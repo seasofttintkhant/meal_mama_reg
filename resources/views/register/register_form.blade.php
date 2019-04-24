@@ -40,7 +40,7 @@
     <div class="info-block m-t-b-20 font-16">
         {{Form::open(['route'=>'register.confirm_form','method'=>'POST','class'=>'register-form h-adr'])}}
             <span class="p-country-name" style="display:none;">Japan</span>
-            <input type="hidden" name="code" value="{{$code}}">
+            <input type="hidden" name="unique_code" value="{{$unique_code}}">
 
             <div class="form-row-h form-group row">
                 {{Form::label('contact_name','Last Name ',['class'=>'label_required col-md-4 col-form-label'])}}
