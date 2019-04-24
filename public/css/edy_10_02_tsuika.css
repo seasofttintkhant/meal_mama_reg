@@ -1,0 +1,89 @@
+
+/* ▼ style.css からの打ち消し */
+body #wrapper #main .main_inner .common_tb03 {
+width: auto;
+display: table;
+margin-bottom: 2px;
+border-bottom: none;
+border-right: none;
+}
+body #wrapper #main .main_inner .common_tb03 tr {
+line-height: 130% !important;
+display: table-row !important;
+}
+body #wrapper #main .main_inner .common_tb03 tr th {
+height: calc(60 * 100vw / 1020) !important;
+padding: 5px;
+}
+body #wrapper #main .main_inner .common_tb03 th,
+body #wrapper #main .main_inner .common_tb03 td {
+display: table-cell !important;
+height: calc(40 * 100vw / 1020) !important;
+min-width: calc(70 * 100vw / 1020) !important;
+width: auto;
+border-bottom: 1px solid #a6a6a6;
+}
+/* ▲ style.css からの打ち消し */
+
+
+/* ▼ 追加CSS */
+
+.table-scroll {
+overflow-y: hidden;
+overflow-x: scroll;
+width: calc(600 * 100vw / 1020);
+max-width: 600px;
+}
+
+.table-scroll::-webkit-scrollbar {
+background: #eee;
+border-radius: 7px;
+height: 10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+background: #bbb;
+border-radius: 7px;
+}
+
+body #wrapper #main .main_inner .common_tb03 th:last-of-type {
+border-right: 1px solid #a6a6a6 !important;
+}
+
+.common_tb03 {
+background: #F4F4F4;
+}
+
+body #wrapper #main .main_inner .common_tb03 .delete_btn,
+body #wrapper #main .main_inner .common_tb03 .add_btn {
+border-radius: 4px;
+padding: 5px 10px !important;
+box-shadow: 0 0 1px rgba(255,255,255,1) inset, inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+border: 1px solid #888;
+}
+
+
+@media screen and (max-width: 1020px) {
+
+body #wrapper #main .main_inner .common_tb03 .delete_btn,
+body #wrapper #main .main_inner .common_tb03 .add_btn {
+width: calc(100 * 100vw / 1020) !important;
+}
+
+.table-scroll::-webkit-scrollbar {
+height: calc(12 * 100vw / 1020);
+}
+
+body #wrapper #main .main_inner .common_tb03 th,
+body #wrapper #main .main_inner .common_tb03 td {
+min-width: calc(110 * 100vw / 1020) !important;
+}
+
+}
+
+body #wrapper{
+    min-width: 0;
+}
+body #wrapper #main #sidebar-btn{
+    display: none;
+}

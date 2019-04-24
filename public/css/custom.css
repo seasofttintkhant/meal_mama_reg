@@ -1,0 +1,105 @@
+body #wrapper #main .main_inner.custom_class{
+    width: 100%;
+}
+.calendar_table{
+    width:100%;
+}
+.calendar_table .th_day span{
+    background: #f2c13a;
+    padding: 5px;
+    border-radius: 5px;
+    display: block;
+}
+.calendar_table th,
+.calendar_table td{
+    text-align: center;
+    padding: 0 5px;
+}
+
+.calendar_table th:nth-of-type(1), 
+.calendar_table td:nth-of-type(1),
+.calendar_table th:nth-of-type(7), 
+.calendar_table td:nth-of-type(7) {
+    color: red;
+}
+
+.calendar_table td{
+    padding: 14px;
+    vertical-align: baseline;
+}
+.calendar_table td > *{
+    display:block;
+}
+.thumbnail_container {
+    width: 180px;
+    margin-top: 10px;
+    height: 200px;
+}
+@media screen and (min-width:1850px)
+{
+   .thumbnail_container {
+    width: 220px;
+  }
+}
+
+img.calendar_thumbnail{
+    width: 100%;
+    max-height: 100%;
+}
+.button_area{
+    margin-top:16px;
+    text-align: left;
+}
+.calendar-btn{
+
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+    color: #fff;
+    font-size: 12px;
+}
+.calendar-btn.btn-red{
+    background: #f00;
+}
+.calendar-btn.btn-green{
+    background: #0F0;
+}
+.calendar-btn.btn-blue{
+    background: #102fc9;
+}
+.top_row{
+    display: block;
+    clear: both;
+    margin: 20px 0;
+    width: 100%;
+}
+.fl_right{
+    float: right;
+}
+.form-input-calendar {
+    border: 1px solid #666;
+    padding: 2px
+}
+input.form-input-calendar{
+    height: 30px;
+    margin-right: 10px;
+    padding: 0 10px;
+    background-color: #f6f6f6;
+    border: 1px solid #eaeaea;
+}
+select.form-input-calendar{
+    width: 250px;
+    height: 30px;
+    margin-right: 10px;
+    padding: 0 10px;
+    background-color: #f6f6f6;
+    border: 1px solid #eaeaea;
+    background: url(../img/eds_05/eds_05_arw04.png) no-repeat right 5% center;
+    background-size: 4%;
+}
+.page_title{
+    margin-right: 70px;
+}
+.calendar-search-form{
+    display: inline-block;
+}

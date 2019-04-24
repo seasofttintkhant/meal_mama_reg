@@ -1,0 +1,82 @@
+.thumbnail_container {
+	display: inline-block !important;
+	width: 100% !important;
+	text-align: center;
+}
+
+#wrapper {
+	overflow: unset !important;
+	min-width: 1200px;
+}
+
+body #wrapper #main #gnav a {
+	font-size: 1.3rem !important;
+	width: 130px !important;
+}
+
+#gnav {
+	width: 960px !important;
+	justify-content: flex-end !important;
+}
+
+#header {
+	width: 100% !important;
+}
+
+body #wrapper #header .headerIn .header_user .header_para01 {
+	font-size: 1.4rem !important;
+}
+
+body #wrapper #header .headerIn .header_logo a img {
+	height: 40px !important;	
+}
+
+body #wrapper #header .headerIn .header_logout a img {
+	width: 50px !important;
+}
+
+@media (min-width: 1750px) {
+	.thumbnail_container {
+		height: 136px;
+	}
+}
+
+@media (min-width: 1600px) AND (max-width: 1750px) {
+	.thumbnail_container {
+		height: 160px;
+	}
+}
+
+@media (min-width: 1400px) AND (max-width: 1600px) {
+	.thumbnail_container {
+		height: 110px;
+	}
+}
+
+@media (max-width: 1400px) {
+	.thumbnail_container {
+		height: 114px;
+	}
+}
+
+.header_left, .header_right {
+    position: relative;
+}
+
+.header_left, .user-options, .header_para01 {
+	float: left;
+}
+
+.header_right {
+	float: right;
+}
+
+.w-150 {
+	width: 150px !important;
+}
+
+.btn_1_link {
+	width: 100%;
+	border: 1px solid white;
+	margin: 2px;
+}
